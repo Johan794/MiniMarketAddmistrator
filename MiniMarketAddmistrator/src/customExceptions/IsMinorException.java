@@ -1,5 +1,5 @@
 package customExceptions;
-
+@SuppressWarnings("serial")
 public class IsMinorException extends  Exception {
 
     public IsMinorException() {

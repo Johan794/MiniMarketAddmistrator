@@ -2,7 +2,7 @@ package model;
 import customExceptions.CanNotGoOutException;
 import customExceptions.IsMinorException;
 
-import java.time.LocalDate;
+
 import java.util.ArrayList;
 
 public class Minimarket {
@@ -19,23 +19,32 @@ public class Minimarket {
         return attepmts;
     }
 
-    public void registerPerson(String idNumber , String typeOfIdentification) throws CanNotGoOutException , IsMinorException {
+    public boolean registerPerson(String idNumber , String typeOfIdentification , int day) throws CanNotGoOutException , IsMinorException {
         attepmts+=1;
-        int day;
+        boolean succes;
         int penultimateNumber;
-        day = LocalDate.now().getDayOfMonth();
         penultimateNumber = idNumber.charAt(idNumber.length()-2);
         if(Type.valueOf(typeOfIdentification).equals(Type.TI)){
+             succes = false;
              throw new IsMinorException();
+
         }else{
-            if(day%2==0 && penultimateNumber%2==0){
+            if(!(day%2==0) && penultimateNumber%2==0){
                 personsIn.add(new Person(idNumber,typeOfIdentification));
-            }else if(!(day%2==0) && !(penultimateNumber%2==0)){
+                succes = true;
+            }else if((day%2==0) && !(penultimateNumber%2==0)){
                 personsIn.add(new Person(idNumber,typeOfIdentification));
+                succes=true;
+
             }else {
+                succes = false;
                throw new CanNotGoOutException();
+
             }
         }
+
+
+        return succes;
 
 
     }

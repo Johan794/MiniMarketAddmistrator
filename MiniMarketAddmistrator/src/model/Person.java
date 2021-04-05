@@ -8,4 +8,14 @@ public class Person {
         this.id = id;
         typeId= Type.valueOf(type);
     }
+
+	public String getId() {
+		return id;
+	}
+
+	public Type getTypeId() {
+		return typeId;
+	}
+    
+    
 }

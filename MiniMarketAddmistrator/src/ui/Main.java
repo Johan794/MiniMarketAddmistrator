@@ -2,6 +2,8 @@ package ui;
 import customExceptions.CanNotGoOutException;
 import customExceptions.IsMinorException;
 import model.Minimarket;
+
+import java.time.LocalDate;
 import  java.util.Scanner;
 
 public class Main {
@@ -24,6 +26,7 @@ public class Main {
                     System.out.println("Adios!");
                      break;
                 default: ppal.operation(election);
+
             }
         }while (election!=0);
 
@@ -32,7 +35,7 @@ public class Main {
     public int menu(){
         int election=0;
         System.out.println(
-                "*****************Este es el menu principal!**************\n"+
+                "******************** Este es el menu principal! ******************************\n"+
                         "¿Que desea hacer hoy?\n" +
                         "[1] Quiero ingresar a una nueva persona al minimarket\n"+
                         "[2] Quiero ver las personas que han tratado de ingresar al Minimarket\n"+
@@ -45,9 +48,12 @@ public class Main {
     public  void operation(int election){
         String id , typeOfId;
         int choise=0;
+        int day;
+        day = LocalDate.now().getDayOfMonth();
         switch (election){
             case 1: System.out.print("Ingrese el numero de identificacion: ");
-                    id = sc.nextLine();
+                sc.nextLine();
+                id = sc.nextLine();
                 System.out.println("Indique el tipo de documento\n"+
                                    "[1] Tarjeta de identidad"+"\n"+
                                    "[2] Cedula de ciudadania"+"\n"+
@@ -57,10 +63,10 @@ public class Main {
                 choise = sc.nextInt();
                 typeOfId = typeOfId(choise);
                 try {
-                    mainMinimarket.registerPerson(id,typeOfId);
+                    mainMinimarket.registerPerson(id,typeOfId,day);
                 }catch (IsMinorException | CanNotGoOutException ex){
                     ex.printStackTrace();
-                    sc.close();
+
                 }
                 break;
 
@@ -69,6 +75,8 @@ public class Main {
 
 
         }
+
+
 
     }
 

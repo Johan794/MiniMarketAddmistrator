@@ -1,5 +1,5 @@
 package model;
 
 public enum Type {
-    TI , CC , PP , CE
+    TI , CC , PP , CE;
 }

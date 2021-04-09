@@ -64,9 +64,13 @@ public class Main {
                 typeOfId = typeOfId(choise);
                 try {
                     mainMinimarket.registerPerson(id,typeOfId,day);
-                }catch (IsMinorException | CanNotGoOutException ex){
+                }catch (CanNotGoOutException ex){
                     ex.printStackTrace();
+                    System.out.println("\nLa persona que trata de ingresar no puede salir el dia de hoy\n");
 
+                }catch (IsMinorException exM){
+                    exM.printStackTrace();
+                    System.out.println("\nLa persona que trata de ingresar es menor de edad\n");
                 }
                 break;
 

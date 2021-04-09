@@ -21,11 +21,10 @@ public class Minimarket {
 
     public boolean registerPerson(String idNumber , String typeOfIdentification , int day) throws CanNotGoOutException , IsMinorException {
         attepmts+=1;
-        boolean succes;
+        boolean succes = false;
         int penultimateNumber;
         penultimateNumber = idNumber.charAt(idNumber.length()-2);
         if(Type.valueOf(typeOfIdentification).equals(Type.TI)){
-             succes = false;
              throw new IsMinorException();
 
         }else{
@@ -37,7 +36,6 @@ public class Minimarket {
                 succes=true;
 
             }else {
-                succes = false;
                throw new CanNotGoOutException();
 
             }
